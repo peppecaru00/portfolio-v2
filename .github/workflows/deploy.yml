@@ -7,9 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # Need write access to push to gh-pages branch
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -34,11 +32,22 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          NODE_ENV: production
         
-      - name: Add .nojekyll file
-        run: touch build/.nojekyll
-      
-      # Deploy to gh-pages branch
+      - name: Debug build output
+        run: |
+          echo "Build output directory contents:"
+          ls -la build/
+          echo "Checking for index.html:"
+          cat build/index.html | head -20
+        
+      - name: Add necessary files
+        run: |
+          touch build/.nojekyll
+          echo "# Portfolio Website" > build/README.md
+          echo "/* /index.html 200" > build/_redirects
+          
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
