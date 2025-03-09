@@ -6,6 +6,8 @@
     import '../lib/assets/styles/global.css';
     import '../lib/assets/styles/theme.css';
     
+    export const prerender = true;
+
     let isLoading = false;
     
     // Add page transitions
