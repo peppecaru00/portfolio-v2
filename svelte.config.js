@@ -13,7 +13,7 @@ const config = {
       base: process.env.NODE_ENV === 'production' ? '/portfolio-v2' : ''
     },
     // Disable trailing slashes (important for GitHub Pages)
-    trailingSlash: 'never'
+    trailingSlash: 'ignore'
   }
 };
 
