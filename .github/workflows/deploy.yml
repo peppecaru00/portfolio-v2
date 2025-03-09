@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -42,9 +44,16 @@ jobs:
         run: |
           mkdir -p static/Media/Stills
           node scripts/generateImageList.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
 
-      - name: Build project
-        run: npm run build
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the project
+      run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -61,3 +70,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3  # Updated from v3.1.0 to v3
+      with:
+        name: build
+        path: |
+          dist/**
+          !node_modules/**
