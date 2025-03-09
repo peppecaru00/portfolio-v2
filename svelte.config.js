@@ -8,7 +8,10 @@ const config = {
       assets: 'build',
       fallback: '200.html', // Use 200.html for SPA fallback
       strict: false // Add this line to ignore dynamic route errors
-    })
+    }),
+    prerender: {
+      default: true // Enable prerendering for all routes by default
+    }
   }
 };
 
