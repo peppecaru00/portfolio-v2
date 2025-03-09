@@ -31,13 +31,12 @@
 
 <div class="header-container">
     <header class="header">
-        <a href="/" class="logo-button"><span class="logo-icon"></span></a>
+        <a href="{base}/" class="logo-button"><span class="logo-icon"></span></a>
         <div class="nav-buttons">
-            <button href="/stills" class:active={$page.url.pathname === '/stills'} class="nav-button">stills</button>
-            <button href="/designs" class:active={$page.url.pathname === '/designs'} class="nav-button">designs</button>
-            <button href="/me" class:active={$page.url.pathname === '/me'} class="nav-button">me</button>
+            <a href="{base}/stills" class:active={$page.url.pathname === `${base}/stills`} class="nav-button">stills</a>
+            <a href="{base}/designs" class:active={$page.url.pathname === `${base}/designs`} class="nav-button">designs</a>
+            <a href="{base}/me" class:active={$page.url.pathname === `${base}/me`} class="nav-button">me</a>
         </div>
-    </header>
     <button on:click={toggleTheme}
         class="theme-toggle" 
         aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
