@@ -1,18 +1,20 @@
+// svelte.config.js
 import adapter from '@sveltejs/adapter-static';
 
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
-  kit: {
-    adapter: adapter({
-      pages: 'build',
-      assets: 'build',
-      fallback: 'index.html', // This is crucial - it makes all routes redirect to index.html
-      precompress: false
-    }),
-    paths: {
-      base: process.env.NODE_ENV === 'production' ? '/portfolio-v2' : ''
-    },
-  }
+    kit: {
+        adapter: adapter({
+            // default options are shown
+            pages: 'build',
+            assets: 'build',
+            fallback: null,
+            precompress: false
+        }),
+        prerender: {
+            default: true
+        },
+        trailingSlash: 'never' // or 'always' depending on your needs
+    }
 };
 
 export default config;
