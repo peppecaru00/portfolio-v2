@@ -4,27 +4,58 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate image list
+        run: |
+          mkdir -p static/Media/Stills
+          node scripts/generateImageList.js
 
       - name: Build project
         run: npm run build
-
-      - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push origin gh-pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+        
+      - name: Debug build output
+        run: |
+          echo "Build output directory contents:"
+          ls -la build/
+          echo "Checking for index.html:"
+          cat build/index.html | head -20
+        
+      - name: Add necessary files for SPA
+        run: |
+          # Create a .nojekyll file to prevent GitHub Pages from processing with Jekyll
+          touch build/.nojekyll
+          
+          # Create a 404.html that's identical to index.html for SPA routing
+          cp build/index.html build/404.html
+          
+          # Add a redirect file for Netlify or other hosts
+          echo "/* /index.html 200" > build/_redirects
+          
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+          branch: gh-pages
+          clean: true
