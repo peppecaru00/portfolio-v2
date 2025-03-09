@@ -10,42 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          
-      - name: Install dependencies
-        run: npm install
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
 
-      - name: Build project
-        run: npm run build
+    - name: Install dependencies
+      run: npm install
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3.1.0  # Update to the latest supported version
-        with:
-          name: build
-          path: ./build
+    - name: Build the project
+      run: npm run build
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload to GitHub Pages
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./build
-
-      - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3  # Updated from v3.1.0 to v3
+      with:
+        name: build
+        path: |
+          dist/**
+          !node_modules/**
