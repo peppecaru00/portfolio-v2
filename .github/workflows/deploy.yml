@@ -58,4 +58,5 @@ jobs:
         with:
           folder: build
           branch: gh-pages
+          publish_dir: ./build
           clean: true
