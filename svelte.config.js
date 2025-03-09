@@ -1,21 +1,16 @@
 import adapter from '@sveltejs/adapter-static';
 
-const config = {
+const dev = process.env.NODE_ENV === 'development';
+
+export default {
   kit: {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'index.html', // Use 200.html for SPA fallback
-      strict: false // Add this line to ignore dynamic route errors
+      fallback: null,
     }),
-    prerender: {
-      entries: [] // Leave empty or specify routes to prerender
-    },
     paths: {
-      // Fixed the base path format and added missing : ''
-      base: process.env.NODE_ENV === 'production' ? '/porfolio-v2' : ''
-    }
-  } // Added this missing closing brace for kit object
+      base: dev ? '' : '/portfolio-v2',
+    },
+  },
 };
-
-export default config;
