@@ -1,18 +1,21 @@
-// svelte.config.js
 import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
+  preprocess: vitePreprocess(),
+  
   kit: {
-    // Remove or adjust the trailingSlash option
-    // trailingSlash: 'always', // This line caused the issue
     adapter: adapter({
-      // default options are shown
       pages: 'build',
       assets: 'build',
-      fallback: null,
-      strict: false // Add this line to ignore the error
-
-    })
+      fallback: 'index.html', // Critical for SPA routing
+      precompress: false
+    }),
+    paths: {
+      // Update to your actual repository name
+      base: process.env.NODE_ENV === 'production' ? '/portfolio-v2' : ''
+    }
   }
 };
 
