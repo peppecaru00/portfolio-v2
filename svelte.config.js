@@ -13,7 +13,7 @@ const config = {
         prerender: {
             default: true
         },
-        trailingSlash: 'never' // or 'always' depending on your needs
+        trailingSlash: 'always' // or 'always' depending on your needs
     }
 };
 
