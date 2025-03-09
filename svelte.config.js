@@ -8,6 +8,7 @@ export default {
       pages: 'build',
       assets: 'build',
       fallback: null,
+      strict: false
     }),
     paths: {
       base: dev ? '' : '/portfolio-v2',
