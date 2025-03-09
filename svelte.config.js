@@ -10,7 +10,7 @@ const config = {
       strict: false // Add this line to ignore dynamic route errors
     }),
     prerender: {
-      default: true // Enable prerendering for all routes by default
+      entries: [] // Leave empty or specify routes to prerender
     }
   }
 };
