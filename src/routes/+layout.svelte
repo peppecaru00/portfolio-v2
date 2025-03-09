@@ -6,7 +6,11 @@
     import '../lib/assets/styles/global.css';
     import '../lib/assets/styles/theme.css';
     
+    // This ensures all pages are prerendered at build time
     export const prerender = true;
+
+    // Makes route pre-generated at build time, not server-side rendered
+    export const ssr = false;
 
     let isLoading = false;
     
