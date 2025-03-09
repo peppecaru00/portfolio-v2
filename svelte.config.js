@@ -11,6 +11,9 @@ const config = {
     }),
     prerender: {
       entries: [] // Leave empty or specify routes to prerender
+    },
+    paths: {
+      base: process.env.NODE_ENV === 'production' ? 'peppecaru00.github.io/'
     }
   }
 };
