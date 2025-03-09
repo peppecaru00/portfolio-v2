@@ -12,12 +12,8 @@ const config = {
       entries: [] // Leave empty or specify routes to prerender
     },
     paths: {
-<<<<<<< HEAD
       // Fixed the base path format and added missing : ''
       base: process.env.NODE_ENV === 'production' ? 'peppecaru00.github.io/portfolio-v2' : ''
-=======
-      base: process.env.NODE_ENV === 'production' ? 'peppecaru00.github.io' : ''
->>>>>>> a9796017969f23abedb13270436de5d9e6900505
     }
   } // Added this missing closing brace for kit object
 };
