@@ -1,5 +1,6 @@
 <script>
     import { page } from '$app/stores';
+    import { base } from '$app/paths'; // Import the base path
     import { onMount } from 'svelte';
     import '../assets/styles/header.css'; // Import the CSS file
 
