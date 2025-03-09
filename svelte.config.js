@@ -13,7 +13,7 @@ const config = {
     },
     paths: {
       // Fixed the base path format and added missing : ''
-      base: process.env.NODE_ENV === 'production' ? '/peppecaru00.github.io' : ''
+      base: process.env.NODE_ENV === 'production' ? 'peppecaru00.github.io/portfolio-v2' : ''
     }
   } // Added this missing closing brace for kit object
 };
