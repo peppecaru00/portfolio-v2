@@ -9,7 +9,7 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'index.html', // Critical for SPA routing
+      fallback: 'null', // Critical for SPA routing
       precompress: false
     }),
     paths: {
