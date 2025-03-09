@@ -9,11 +9,10 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'null', // Critical for SPA routing
+      fallback: 'index.html', // Critical for SPA routing
       precompress: false
     }),
     paths: {
-      // Update to your actual repository name
       base: process.env.NODE_ENV === 'production' ? '/portfolio-v2' : ''
     }
   }

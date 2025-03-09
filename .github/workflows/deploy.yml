@@ -42,10 +42,15 @@ jobs:
           echo "Checking for index.html:"
           cat build/index.html | head -20
         
-      - name: Add necessary files
+      - name: Add necessary files for SPA
         run: |
+          # Create a .nojekyll file to prevent GitHub Pages from processing with Jekyll
           touch build/.nojekyll
-          echo "# Portfolio Website" > build/README.md
+          
+          # Create a 404.html that's identical to index.html for SPA routing
+          cp build/index.html build/404.html
+          
+          # Add a redirect file for Netlify or other hosts
           echo "/* /index.html 200" > build/_redirects
           
       - name: Deploy to GitHub Pages
