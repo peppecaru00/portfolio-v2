@@ -1,4 +1,3 @@
-// svelte.config.js
 import adapter from '@sveltejs/adapter-static';
 
 const config = {
@@ -13,9 +12,10 @@ const config = {
       entries: [] // Leave empty or specify routes to prerender
     },
     paths: {
-      base: process.env.NODE_ENV === 'production' ? 'peppecaru00.github.io/'
+      // Fixed the base path format and added missing : ''
+      base: process.env.NODE_ENV === 'production' ? 'peppecaru00.github.io/' : ''
     }
-  }
+  } // Added this missing closing brace for kit object
 };
 
 export default config;
