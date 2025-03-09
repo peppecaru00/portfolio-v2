@@ -2,8 +2,8 @@
     --scrollbar-thumb: rgba(255, 255, 255, 0.2);
     --scrollbar-track: rgba(0, 0, 0, 0.1);
     --navbar-height: 3.5rem;
-    --icon-light: url('Icons/moon.svg');
-    --icon-dark: url('Icons/sun.svg');
+    --icon-light: url('Icons/sun.svg');
+    --icon-dark: url('Icons/moon.svg');
     --cursor-dark: url('Cursors/go-light.svg') 8 6, pointer;
     --cursor-light: url('Cursors/go-dark.svg') 8 6, pointer;
     --backdrop-blur: blur(500px);
@@ -47,34 +47,3 @@
     --text-muted: rgba(255, 255, 255, 0.7);
 }
 
-.theme-toggle{
-    display: block;
-    justify-content: center; ;
-    align-items: center;
-    height: calc(var(--navbar-height) - .5rem);
-    width: calc(var(--navbar-height) - .5rem);;
-    background-color: var(--header-background);
-    outline: none;
-    border: none;
-    box-shadow: var(--glassmorphism-small);
-    border-radius: 999rem;
-    margin-left: 1rem;
-    backdrop-filter: var(--backdrop-blur);
-    transition: background-color 0.3s, color 0.3s;
-    -webkit-backdrop-filter: var(--backdrop-blur);
-    cursor: var(--theme-toggle-cursor);
-}
-
-.theme-toggle::after{
-    content: '';
-    height: 1.5rem;
-    width: 1.5rem;
-    background-image: var(--light-theme-toggle-icon);
-    background-size: cover;
-    background-position: center;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
